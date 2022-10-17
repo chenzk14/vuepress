@@ -1,0 +1,20 @@
+:root {
+    .home {
+        background:url('/assets/img/bg.svg') no-repeat  100%; 
+    }
+    --homepage-width: 1920px;
+    --c-brand: #0288f5;
+    --c-brand-light: #34a4ff;
+    --c-tip: #0288f5;
+    --t-color: 0.5s ease;
+    --t-transform: 0.5s ease;
+    .sidebar-item.sidebar-heading.active{
+        background: #a0d0f7;
+        transition: color 0.15s ease;
+        font-weight: 600;
+        color: var(--c-text-accent);
+        border-left:0;
+        border-right: 5px solid;
+        border-right-color: var(--c-text-accent);
+    }
+  }
