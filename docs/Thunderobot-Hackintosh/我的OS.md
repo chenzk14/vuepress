@@ -36,7 +36,7 @@
 
 8. **OC主题 png 转 icns 工具**：[Icnspack-Builder](https://github.com/chris1111/Icnspack-Builder)
 
-9. **MAC软件下载**: https://macwk.com/
+~~9. **MAC软件下载**:https://macwk.com/~~
 ::: 
 ### **当前EFI问题**
 ::: warning 问题
