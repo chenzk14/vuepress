@@ -1,7 +1,17 @@
 :root {
     .home {
-        background:url('/assets/img/bg.svg') no-repeat  100%; 
+        background: url(/assets/img/bg.svg)  50%/cover no-repeat;
+        .hero img{
+            border-radius: 500px;
+        }
+        .features{
+            border:0 !important;
+        }
+        .footer{
+            border:0 !important;
+        }
     }
+
     --homepage-width: 1920px;
     --c-brand: #0288f5;
     --c-brand-light: #34a4ff;
