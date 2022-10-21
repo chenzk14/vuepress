@@ -26,11 +26,11 @@ export default {
       nprogressPlugin(),],     
     theme: defaultTheme({
         logo: '/assets/img/logo-nav.png',
-        sidebarDepth: 2,
+        // sidebarDepth: 2
         contributors: false,
         navbar: [
             {text: '主页', link: '/'},
-            {text: '个人作品集', link: './aa'},
+            {text: '个人作品集', link: '/个人作品集/个人作品集.md'},
             {
                 text: '文档相关',
                 children: ['/触动函数相关/已封装好的函数.md',
@@ -57,6 +57,7 @@ export default {
             '/批处理相关/批处理汇总.md',
             '/Python脚本相关/批量随机合成文件夹内的所有图片.md',
             '/Thunderobot-Hackintosh/我的OS.md',
+            // '/个人作品集/个人作品集.md'
         ]
     }),
   }
