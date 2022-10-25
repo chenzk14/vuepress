@@ -13,7 +13,10 @@ export default {
     plugins: [
         ["vuepress-plugin-auto-sidebar", {}],
         docsearchPlugin({
-            // 配置项
+            placeholder: "搜索",
+            appId: '',
+            apiKey: '',
+            indexName: ''
         }),
     ],
     theme: defaultTheme({
