@@ -18,15 +18,16 @@ export default {
             // 配置项
         }),
         docsearchPlugin({
-        placeholder: "搜索",
-        appId: '',
-        apiKey: '',
-        indexName: ''
-      }),
-      nprogressPlugin(),],     
+            placeholder: "搜索",
+            appId: '',
+            apiKey: '',
+            indexName: ''
+        }),
+        nprogressPlugin(),
+    ],
     theme: defaultTheme({
         logo: '/assets/img/logo-nav.png',
-        // sidebarDepth: 2
+        sidebarDepth: 2,
         contributors: false,
         navbar: [
             {text: '主页', link: '/'},

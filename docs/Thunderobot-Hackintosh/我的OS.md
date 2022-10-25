@@ -1,5 +1,5 @@
 # Hackintosh
-
+[[toc]]
 ## **我的 EFI文件**
 安装过程不做说明，网上一大把,安装可参考这位博主的博客:  [国光](https://apple.sqlsec.com/2-%E5%90%AF%E5%8A%A8%E7%9B%98%E5%88%B6%E4%BD%9C/2-1.html)
 
