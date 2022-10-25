@@ -1,7 +1,5 @@
 import { defaultTheme } from 'vuepress'
-import { mediumZoomPlugin } from '@vuepress/plugin-medium-zoom'
 import { docsearchPlugin } from '@vuepress/plugin-docsearch'
-import { nprogressPlugin } from '@vuepress/plugin-nprogress'
 
 export default {
     title: 'canstor - Demo文档',
@@ -14,16 +12,9 @@ export default {
         ]],
     plugins: [
         ["vuepress-plugin-auto-sidebar", {}],
-        mediumZoomPlugin({
+        docsearchPlugin({
             // 配置项
         }),
-        docsearchPlugin({
-            placeholder: "搜索",
-            appId: '',
-            apiKey: '',
-            indexName: ''
-        }),
-        nprogressPlugin(),
     ],
     theme: defaultTheme({
         logo: '/assets/img/logo-nav.png',
@@ -37,7 +28,7 @@ export default {
                 children: ['/触动函数相关/已封装好的函数.md',
                     '/批处理相关/批处理汇总.md',
                     '/Python脚本相关/批量随机合成文件夹内的所有图片.md',
-                    '/Thunderobot-Hackintosh/我的OS.md',
+                    '/Thunderobot-Hackintosh/我的OS.md'
                 ]
             },
             {
@@ -58,7 +49,6 @@ export default {
             '/批处理相关/批处理汇总.md',
             '/Python脚本相关/批量随机合成文件夹内的所有图片.md',
             '/Thunderobot-Hackintosh/我的OS.md',
-            // '/个人作品集/个人作品集.md'
         ]
     }),
   }

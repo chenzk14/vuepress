@@ -8,7 +8,7 @@
             border:0 !important;
         }
         .footer{
-            border:0 !important;
+            border: 0 !important;
         }
     }
 
@@ -18,6 +18,9 @@
     --c-tip: #0288f5;
     --t-color: 0.5s ease;
     --t-transform: 0.5s ease;
+
+    //--search-input-width: 12rem !important;
+    //--search-result-width: 20rem !important;
 
     .sidebar-item.sidebar-heading.active {
         background: #a0d0f7;

@@ -1,9 +1,10 @@
 # Hackintosh
-[[toc]]
+
 ## **我的 EFI文件**
+
 安装过程不做说明，网上一大把,安装可参考这位博主的博客:  [国光](https://apple.sqlsec.com/2-%E5%90%AF%E5%8A%A8%E7%9B%98%E5%88%B6%E4%BD%9C/2-1.html)
 
-详细的releases可以参考我的源(适配到Macos-12.5)：[雷神911-Air电竞版](https://github.com/chenzk14/Thunderobot-Hackintosh)
+详细的releases可以参考我的源(适配到 **Macos-13.0**)：[雷神911-Air电竞版](https://github.com/chenzk14/Thunderobot-Hackintosh)
 
 ### 我的配置
 ::: tip 配置
