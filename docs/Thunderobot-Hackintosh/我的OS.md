@@ -1,14 +1,15 @@
-# Hackintosh
+# 黑苹果
 
 ## **我的 EFI文件**
 
-安装过程不做说明，网上一大把,安装可参考这位博主的博客:  [国光](https://apple.sqlsec.com/2-%E5%90%AF%E5%8A%A8%E7%9B%98%E5%88%B6%E4%BD%9C/2-1.html)
+安装过程不做说明，网上一大把,可参考这位博主的博客:  [国光](https://apple.sqlsec.com/2-%E5%90%AF%E5%8A%A8%E7%9B%98%E5%88%B6%E4%BD%9C/2-1.html)
 
-详细的releases可以参考我的源(适配到 **Macos-13.0**)：[雷神911-Air电竞版](https://github.com/chenzk14/Thunderobot-Hackintosh)
+和我一样配置的小伙伴可以参考我的源下载EFI (适配到 **Macos-13.0**)：[雷神911-Air电竞版](https://github.com/chenzk14/Thunderobot-Hackintosh)
 
 ### 我的配置
+
 ::: tip 配置
-**雷神911air电竞版144HZ屏 - 1050ti -UHD630** 
+**雷神911air 电竞版 144HZ屏 - 1050ti -UHD630 -i7 - 8代U**
 :::
 
 ### **你可能需要的工具**
