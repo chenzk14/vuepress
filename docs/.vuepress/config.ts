@@ -30,7 +30,6 @@ export default {
                 text: '文档相关',
                 children: ['/触动函数相关/已封装好的函数.md',
                     '/批处理相关/批处理汇总.md',
-                    '/Python脚本相关/批量随机合成文件夹内的所有图片.md',
                     '/Thunderobot-Hackintosh/我的OS.md'
                 ]
             },
@@ -50,7 +49,12 @@ export default {
             {text: '关于我', link: '/about.md',},
             '/触动函数相关/已封装好的函数',
             '/批处理相关/批处理汇总.md',
-            '/Python脚本相关/批量随机合成文件夹内的所有图片.md',
+            {
+                text: 'Python',
+                children: ['/Python脚本相关/批量随机合成文件夹内的所有图片.md',
+                    '/Python脚本相关/Selenium脚本开发相关记录.md',
+                ]
+            },
             '/Thunderobot-Hackintosh/我的OS.md',
         ]
     }),
