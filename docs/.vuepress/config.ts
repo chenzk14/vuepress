@@ -55,6 +55,11 @@ export default {
                     '/Python脚本相关/Selenium脚本开发相关记录.md',
                 ]
             },
+            {
+                text: 'FFMPEG',
+                children: ['/ffmpeg/水印添加.md'
+                ]
+            },
             '/Thunderobot-Hackintosh/我的OS.md',
         ]
     }),
