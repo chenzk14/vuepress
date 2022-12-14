@@ -53,6 +53,7 @@ export default {
                 text: 'Python',
                 children: ['/Python脚本相关/批量随机合成文件夹内的所有图片.md',
                     '/Python脚本相关/Selenium脚本开发相关记录.md',
+                    '/Python脚本相关/文件按行分割.md',
                 ]
             },
             {
