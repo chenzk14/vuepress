@@ -1,9 +1,9 @@
 import {defaultTheme} from 'vuepress'
-// import { docsearchPlugin } from '@vuepress/plugin-docsearch'
-import {searchPlugin} from '@vuepress/plugin-search'
+import {docsearchPlugin} from '@vuepress/plugin-docsearch'
+// import {searchPlugin} from '@vuepress/plugin-search'
 
 export default {
-    title: 'canstor - Demo文档',
+    title: 'Canstor - 博客',
     base: '/vuepress/', //需要设置部署文档的文件名，1.0版本 base字段一定是需要打包的时候才开启，不需要的时候要注释掉，不然npm跑项目就会运行不起来
     dest: './dist',
     markdown: {lineNumbers: true},
@@ -14,24 +14,24 @@ export default {
     plugins: [
         ["vuepress-plugin-auto-sidebar", {}],
 
-        // docsearchPlugin({
-        //     placeholder: "搜索",
-        //     appId: '',
-        //     apiKey: '',
-        //     indexName: ''
-        // }),
-
-        searchPlugin({
-            locales: {
-                '/': {
-                    placeholder: '搜索',
-                },
-            },
+        docsearchPlugin({
+            placeholder: "搜索",
+            appId: '',
+            apiKey: '',
+            indexName: ''
         }),
+
+        // searchPlugin({
+        //     locales: {
+        //         '/': {
+        //             placeholder: '搜索',
+        //         },
+        //     },
+        // }),
 
     ],
     theme: defaultTheme({
-        logo: '/assets/img/logo-nav.png',
+        logo: 'assets/img/logo-nav.png',
         sidebarDepth: 2,
         contributors: false,
         navbar: [
@@ -71,20 +71,27 @@ export default {
         repo: 'https://github.com/chenzk14/vuepress.git',
         sidebar: [
             {text: '关于我', link: '/about.md',},
-            '/触动函数相关/已封装好的函数',
+            '/触动函数相关/已封装好的函数.md',
             '/批处理相关/批处理汇总.md',
+
             {
                 text: 'Python',
-                children: ['/Python脚本相关/批量随机合成文件夹内的所有图片.md',
-                    '/Python脚本相关/Selenium脚本开发相关记录.md',
-                    '/Python脚本相关/文件按行分割.md',
+                collapsible: true,
+                children: [
+                    {text: '1. 批量随机合成文件夹内的所有图片', link: '/Python脚本相关/批量随机合成文件夹内的所有图片.md'},
+                    {text: '2. Selenium脚本开发相关记录', link: '/Python脚本相关/Selenium脚本开发相关记录.md'},
+                    {text: '3. 文件按行分割', link: '/Python脚本相关/文件按行分割.md'},
                 ]
             },
+
             {
                 text: 'FFMPEG',
-                children: ['/ffmpeg/水印添加.md'
+                collapsible: true,
+                children: [
+                    {text: '1. 水印添加', link: '/ffmpeg/水印添加.md'}
                 ]
             },
+
             '/Thunderobot-Hackintosh/我的OS.md',
         ]
     }),

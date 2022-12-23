@@ -27,13 +27,13 @@
     //--search-result-width: 20rem !important;
 
     .sidebar-item.sidebar-heading.active {
-        background: #a0d0f7;
-        transition: color 0.15s ease;
-        font-weight: 600;
-        color: var(--c-text-accent);
-        //border-left: 0;
-        border-left: 8px solid;
-        border-left-color: var(--c-text-accent);
+      background: #a0d0f7;
+      transition: color 0.15s ease;
+      font-weight: 600;
+      color: var(--c-text-accent);
+      //border-left: 0;
+      border-left: 5px solid;
+      border-left-color: var(--c-text-accent);
     }
 
     .code-group__nav-tab-active {
