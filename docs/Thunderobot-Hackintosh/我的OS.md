@@ -4,7 +4,7 @@
 
 安装过程不做说明，网上一大把,可参考这位博主的博客:  [国光](https://apple.sqlsec.com/2-%E5%90%AF%E5%8A%A8%E7%9B%98%E5%88%B6%E4%BD%9C/2-1.html)
 
-和我一样配置的小伙伴可以参考我的源下载EFI (适配到 **Macos-13.0**)：[雷神911-Air电竞版](https://github.com/chenzk14/Thunderobot-Hackintosh)
+和我一样配置的小伙伴可以参考我的源下载EFI (适配到 **Macos-13.1 Ventura**)：[雷神911-Air电竞版](https://github.com/chenzk14/Thunderobot-Hackintosh)
 
 ### 我的配置
 
@@ -30,15 +30,14 @@
 
 6. **蓝牙驱动**：[IntelBluetoothFirmware](https://github.com/OpenIntelWireless/IntelBluetoothFirmware)
 
-  > `BigSur`建议 `IntelBluetoothFirmware.kext` 和 `IntelBluetoothInjector.kext` 配合使用
+> `BigSur`以下的系统，建议 `IntelBluetoothFirmware.kext` 和 `IntelBluetoothInjector.kext` 配合使用
 
-  > `Monterey`由于底层更改，建议`IntelBluetoothFirmware.kext` 和 `BlueToolFixup.kext` 配合使用
+> `Monterey` 以上的系统，由于底层更改，建议`IntelBluetoothFirmware.kext` 和 `BlueToolFixup.kext` 配合使用
 
 7. **Clash下载地址**：[Clash for windows](https://github.com/Fndroid/clash_for_windows_pkg)
 
 8. **OC主题 png 转 icns 工具**：[Icnspack-Builder](https://github.com/chris1111/Icnspack-Builder)
 
-~~9. **MAC软件下载**:https://macwk.com/~~
 ::: 
 ### **当前EFI问题**
 ::: warning 问题

@@ -1,15 +1,19 @@
 :root {
     .home {
-        background: url(/assets/img/bg.svg)  50%/cover no-repeat;
-        .hero img{
-            border-radius: 500px;
-        }
-        .features{
-            border:0 !important;
-        }
-        .footer{
-            border: 0 !important;
-        }
+      background-repeat: no-repeat;
+      background-image: url(/assets/img/bg.svg);
+
+      .hero img {
+        border-radius: 500px;
+      }
+
+      .features {
+        border: 0 !important;
+      }
+
+      .footer {
+        border: 0 !important;
+      }
     }
 
     --homepage-width: 1920px;

@@ -9,7 +9,7 @@ export default {
     markdown: {lineNumbers: true},
     head: [
         [
-            'link', {rel: 'icon', href: '/assets/img/logo-nav.png'}
+            'link', {rel: 'icon', href: '/logo-nav.png'}
         ]],
     plugins: [
         ["vuepress-plugin-auto-sidebar", {}],
@@ -36,8 +36,20 @@ export default {
         contributors: false,
         navbar: [
             {text: '主页', link: '/'},
+            {
+                text: '导航',
+                children: [
+                    {text: '机场1 - 还比较稳定,自用推荐', link: 'https://teacat1.com/#/register?code=couo3bID'},
+                    {text: '花瓣 - 灵感素材网站', link: 'https://huaban.com/'},
+                    {text: '奇迹修 - 资源导航网站', link: 'https://www.qijishow.com/'},
+                    {text: 'iconmoon - 矢量图打包成图标字体的网站', link: 'https://icomoon.io/'},
+                    {text: 'iconfont - 阿里团队图标字体及图标素材下载平台', link: 'https://www.iconfont.cn/'},
+                ]
+            },
+
             {text: '个人作品集', link: '/个人作品集/个人作品集.md'},
             {text: '个人文档记录', link: '/about.md'},
+
             // {
             //     text: '文档相关',
             //     children: ['/触动函数相关/已封装好的函数.md',
