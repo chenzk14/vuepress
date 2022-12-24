@@ -1,7 +1,6 @@
 :root {
     .home {
-      background-repeat: no-repeat;
-      background-image: url(/assets/img/bg.svg);
+      background: url(/assets/img/bg.svg) 50%/cover no-repeat;
 
       .hero img {
         border-radius: 500px;
