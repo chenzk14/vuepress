@@ -9,7 +9,8 @@ export default {
     markdown: {lineNumbers: true},
     head: [
         [
-            'link', {rel: 'icon', href: '/logo-nav.png'}
+            // favicon.ico
+            'link', {rel: 'icon', href: 'https://pic.imgdb.cn/item/63aa4eb908b6830163f86f4c.png'}
         ]],
     plugins: [
         ["vuepress-plugin-auto-sidebar", {}],
@@ -31,7 +32,7 @@ export default {
 
     ],
     theme: defaultTheme({
-        logo: 'assets/img/logo-nav.png',
+        logo: '/assets/img/logo-nav.png',
         sidebarDepth: 2,
         contributors: false,
         navbar: [
@@ -49,14 +50,6 @@ export default {
 
             {text: '个人作品集', link: '/个人作品集/个人作品集.md'},
             {text: '个人文档记录', link: '/about.md'},
-
-            // {
-            //     text: '文档相关',
-            //     children: ['/触动函数相关/已封装好的函数.md',
-            //         // '/批处理相关/批处理汇总.md',
-            //         // '/Thunderobot-Hackintosh/我的OS.md'
-            //     ]
-            // },
             {
                 text: '随笔',
                 children: ['/随笔/人间.md',
