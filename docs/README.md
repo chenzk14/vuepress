@@ -17,5 +17,5 @@ features:
     details: null
   - title: null
     details: null
-    footer: Copyright Canstor 2021-2022 all right reserved，powered by Vuepress 2.0-beta
+footer: Copyright Canstor 2021-2022 all right reserved，powered by Vuepress 2.0-beta
 ---

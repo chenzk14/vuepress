@@ -1,5 +1,5 @@
 import {defaultTheme} from 'vuepress'
-import {docsearchPlugin} from '@vuepress/plugin-docsearch'
+// import {docsearchPlugin} from '@vuepress/plugin-docsearch'
 // import {searchPlugin} from '@vuepress/plugin-search'
 
 export default {
@@ -15,12 +15,12 @@ export default {
     plugins: [
         ["vuepress-plugin-auto-sidebar", {}],
 
-        docsearchPlugin({
-            placeholder: "搜索",
-            appId: '',
-            apiKey: '',
-            indexName: ''
-        }),
+        // docsearchPlugin({
+        //     placeholder: "搜索",
+        //     appId: '',
+        //     apiKey: '',
+        //     indexName: ''
+        // }),
 
         // searchPlugin({
         //     locales: {
