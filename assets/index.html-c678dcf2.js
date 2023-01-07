@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-3203d171","path":"/ffmpeg/","title":"Ffmpeg","lang":"zh-CN","frontmatter":{"title":"Ffmpeg"},"headers":[],"git":{},"readingTime":{"minutes":0,"words":1},"filePathRelative":null}');export{e as data};

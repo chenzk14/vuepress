@@ -1,0 +1,1 @@
+const t=JSON.parse('{"key":"v-7d6cce0f","path":"/Thunderobot-Hackintosh/","title":"Thunderobot Hackintosh","lang":"zh-CN","frontmatter":{"title":"Thunderobot Hackintosh"},"headers":[],"git":{},"readingTime":{"minutes":0,"words":1},"filePathRelative":null}');export{t as data};

@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-22a39d25","path":"/about.html","title":"关于我","lang":"zh-CN","frontmatter":{},"headers":[],"git":{"createdTime":1673074024000,"updatedTime":1673074024000,"contributors":[{"name":"chenzk14","email":"1140037470@qq.com","commits":1}]},"readingTime":{"minutes":0.12,"words":36},"filePathRelative":"about.md","localizedDate":"2023年1月7日"}');export{e as data};

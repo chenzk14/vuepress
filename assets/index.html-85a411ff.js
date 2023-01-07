@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-6c0e2f56","path":"/%E8%A7%A6%E5%8A%A8%E5%87%BD%E6%95%B0%E7%9B%B8%E5%85%B3/","title":"触动函数相关","lang":"zh-CN","frontmatter":{"title":"触动函数相关"},"headers":[],"git":{},"readingTime":{"minutes":0,"words":1},"filePathRelative":null}');export{e as data};

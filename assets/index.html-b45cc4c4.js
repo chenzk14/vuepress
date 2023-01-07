@@ -1,0 +1,1 @@
+const t=JSON.parse('{"key":"v-4d63ca6a","path":"/Python%E8%84%9A%E6%9C%AC%E7%9B%B8%E5%85%B3/","title":"Python脚本相关","lang":"zh-CN","frontmatter":{"title":"Python脚本相关"},"headers":[],"git":{},"readingTime":{"minutes":0,"words":1},"filePathRelative":null}');export{t as data};
