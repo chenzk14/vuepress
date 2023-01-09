@@ -1,4 +1,4 @@
-我的个人博客项目 <br>
+我的个人博客项目  - vuepress-theme-hope <br>
 地址：https://chenzk14.github.io/vuepress/
 <br>
  
