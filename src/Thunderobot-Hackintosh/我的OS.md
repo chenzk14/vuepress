@@ -4,7 +4,7 @@
 
 安装过程不做说明，网上一大把,可参考这位博主的博客:  [国光](https://apple.sqlsec.com/2-%E5%90%AF%E5%8A%A8%E7%9B%98%E5%88%B6%E4%BD%9C/2-1.html)
 
-和我一样配置的小伙伴可以参考我的源下载EFI (已适配 **Macos-12.x Monterey**)：[雷神911-Air电竞版](https://github.com/chenzk14/Thunderobot-Hackintosh)
+和我一样配置的小伙伴可以参考我的源下载EFI (已适配 **Macos-13.x**)：[雷神911-Air电竞版](https://github.com/chenzk14/Thunderobot-Hackintosh)
 
 ### 我的配置
 

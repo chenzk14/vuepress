@@ -13,19 +13,19 @@ export default defineUserConfig({
       'link', { rel: 'icon', href: '/vuepress//assets/img/logo-nav.png' }
     ]
   ],
-  // plugins: [
-  //   docsearchPlugin({
-  //     appId: "O8JC6T6M7T",
-  //     apiKey: "d8a6dfdbcd32d2ded30b707aa2725922",
-  //     indexName: "chenzk14",
-  //     placeholder: '搜索文档',
-  //     translations: {
-  //       button: {
-  //         buttonText: '搜索文档',
-  //       },
-  //     }
-  //   })
-  // ],
+  plugins: [
+    docsearchPlugin({
+      appId: "O8JC6T6M7T",
+      apiKey: "d8a6dfdbcd32d2ded30b707aa2725922",
+      indexName: "chenzk14",
+      placeholder: '搜索文档',
+      translations: {
+        button: {
+          buttonText: '搜索文档',
+        },
+      }
+    })
+  ],
   theme: hopeTheme({
     logo: '/assets/img/logo-nav.png',
     iconAssets: "iconfont",
@@ -35,7 +35,8 @@ export default defineUserConfig({
         text: '导航',
         icon: "overflow",
         children: [
-          { text: '机场1 - 还比较稳定,自用推荐', link: 'https://teacat1.com/#/register?code=couo3bID' },
+          { text: '机场1 - 还比较稳定,自用推荐', link: 'https://xn--rss276g.net/' },
+          { text: '机场2 - 还比较稳定,自用推荐', link: 'https://teacat1.com/#/register?code=couo3bID' },
           { text: '花瓣 - 灵感素材网站', link: 'https://huaban.com/' },
           { text: '奇迹修 - 资源导航网站', link: 'https://www.qijishow.com/' },
           { text: 'iconmoon - 矢量图打包成图标字体的网站', link: 'https://icomoon.io/' },
