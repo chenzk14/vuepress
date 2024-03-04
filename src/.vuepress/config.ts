@@ -1,8 +1,16 @@
 import { defineUserConfig } from "vuepress";
 import { hopeTheme } from "vuepress-theme-hope";
 import { docsearchPlugin } from "@vuepress/plugin-docsearch";
+import { viteBundler } from '@vuepress/bundler-vite'
+import { gitPlugin } from '@vuepress/plugin-git'
 
 export default defineUserConfig({
+
+  bundler: viteBundler({
+    viteOptions: {},
+    vuePluginOptions: {},
+  }),
+  
   lang: "zh-CN",
   title: 'Canstor - Blog',
   base: '/vuepress/', //需要设置部署文档的文件名，1.0版本 base字段一定是需要打包的时候才开启，不需要的时候要注释掉，不然npm跑项目就会运行不起来
@@ -24,7 +32,13 @@ export default defineUserConfig({
           buttonText: '搜索文档',
         },
       }
-    })
+    }),
+    gitPlugin({
+      // 配置项
+      createdTime: false,
+      updatedTime: true,
+      contributors:true,
+    }),
   ],
   theme: hopeTheme({
     logo: '/assets/img/logo-nav.png',
@@ -35,8 +49,7 @@ export default defineUserConfig({
         text: '导航',
         icon: "overflow",
         children: [
-          { text: '机场1 - 还比较稳定,自用推荐', link: 'https://xn--rss276g.net/' },
-          { text: '机场2 - 还比较稳定,自用推荐', link: 'https://teacat1.com/#/register?code=couo3bID' },
+          { text: '天航 - 14元200G,自用推荐', link: 'http://tianhang.lol/auth/register?code=sXVg' },
           { text: '花瓣 - 灵感素材网站', link: 'https://huaban.com/' },
           { text: '奇迹修 - 资源导航网站', link: 'https://www.qijishow.com/' },
           { text: 'iconmoon - 矢量图打包成图标字体的网站', link: 'https://icomoon.io/' },
