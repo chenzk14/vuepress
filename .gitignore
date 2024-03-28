@@ -6,3 +6,4 @@ src/.vuepress/dist/
 dist
 ./dist/
 .idea
+node_modules

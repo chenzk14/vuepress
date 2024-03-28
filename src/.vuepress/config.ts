@@ -1,6 +1,5 @@
 import { defineUserConfig } from "vuepress";
 import { hopeTheme } from "vuepress-theme-hope";
-import { docsearchPlugin } from "@vuepress/plugin-docsearch";
 import { viteBundler } from '@vuepress/bundler-vite'
 import { gitPlugin } from '@vuepress/plugin-git'
 
@@ -22,17 +21,6 @@ export default defineUserConfig({
     ]
   ],
   plugins: [
-    docsearchPlugin({
-      appId: "O8JC6T6M7T",
-      apiKey: "d8a6dfdbcd32d2ded30b707aa2725922",
-      indexName: "chenzk14",
-      placeholder: '搜索文档',
-      translations: {
-        button: {
-          buttonText: '搜索文档',
-        },
-      }
-    }),
     gitPlugin({
       // 配置项
       createdTime: false,
@@ -112,7 +100,7 @@ export default defineUserConfig({
       },
       {
         text: "黑苹果配置",
-        link: "/Thunderobot-Hackintosh/我的Os.md",
+        link: "/Thunderobot-Hackintosh/我的OS.md",
         icon: "copyright"
       },
     ],
@@ -129,6 +117,17 @@ export default defineUserConfig({
         imgSize: true,
         // 选项卡
         tabs: true,
+      },
+      docsearch: {
+        appId: "O8JC6T6M7T",
+          apiKey: "d8a6dfdbcd32d2ded30b707aa2725922",
+          indexName: "chenzk14",
+          placeholder: '搜索文档',
+          translations: {
+            button: {
+              buttonText: '搜索文档',
+            },
+          }
       },
     },
     repo: "https://github.com/chenzk14/vuepress.git",
