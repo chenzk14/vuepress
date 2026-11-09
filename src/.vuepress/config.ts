@@ -73,6 +73,11 @@ export default defineUserConfig({
         icon: "rank"
       },
       {
+        text: 'Clash Verge 使用说明',
+        link: '/服务器相关/ClashVerge使用说明.md',
+        icon: "safe"
+      },
+      {
         text: 'Python 脚本',
         collapsible: true,
         icon: "python",
@@ -83,7 +88,7 @@ export default defineUserConfig({
         ]
       },
       {
-        text: '服务器与代理',
+        text: '服务器与代理搭建',
         collapsible: true,
         icon: "network",
         children: [
