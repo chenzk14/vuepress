@@ -10,7 +10,7 @@ export default defineUserConfig({
   }),
 
   lang: "zh-CN",
-  title: 'Canstor - Blog',
+  title: 'ForMonEv - Blog',
   base: '/vuepress/', //需要设置部署文档的文件名，1.0版本 base字段一定是需要打包的时候才开启，不需要的时候要注释掉，不然npm跑项目就会运行不起来
   dest: './dist',
   head: [
@@ -29,14 +29,13 @@ export default defineUserConfig({
         children: [
           { text: '天航 - 14元200G,自用推荐', link: 'http://tianhang.lol/auth/register?code=sXVg' },
           { text: '花瓣 - 灵感素材网站', link: 'https://huaban.com/' },
-          { text: '奇迹修 - 资源导航网站', link: 'https://www.qijishow.com/' },
+          { text: '奇迹秀 - 资源导航网站', link: 'https://www.qijishow.com/' },
           { text: 'iconmoon - 矢量图打包成图标字体的网站', link: 'https://icomoon.io/' },
           { text: 'iconfont - 阿里团队图标字体及图标素材下载平台', link: 'https://www.iconfont.cn/' },
         ]
       },
-
-      { text: '个人作品集', link: '/个人作品集/个人作品集.md', icon: "palette" },
       { text: '个人文档记录', link: '/about.md', icon: "stack" },
+      { text: '个人作品集', link: '/个人作品集/个人作品集.md', icon: "palette" },
       {
         text: '随笔',
         icon: "note",
@@ -120,7 +119,7 @@ export default defineUserConfig({
       docsearch: {
         appId: "O8JC6T6M7T",
           apiKey: "d8a6dfdbcd32d2ded30b707aa2725922",
-          indexName: "chenzk14",
+          indexName: "ForMonEv",
           placeholder: '搜索文档',
           translations: {
             button: {
@@ -141,7 +140,7 @@ export default defineUserConfig({
       // 选项卡
       tabs: true,
     },
-    repo: "https://github.com/chenzk14/vuepress.git",
+    repo: "https://github.com/ForMonEv/vuepress.git",
     repoLabel: "GitHub",
     repoDisplay: true,
   }),
