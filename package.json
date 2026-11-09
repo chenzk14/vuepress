@@ -7,17 +7,16 @@
   "scripts": {
     "docs:build": "vuepress build src",
     "docs:clean-dev": "vuepress dev src --clean-cache",
-    "docs:dev": "vuepress dev src"
+    "docs:dev": "vuepress dev src",
+    "deploy": "powershell -ExecutionPolicy Bypass -File deploy.ps1"
   },
   "devDependencies": {
-    "@vuepress/bundler-vite": "2.0.0-rc.8",
-    "@vuepress/client": "2.0.0-rc.8",
-    "@vuepress/plugin-docsearch": "2.0.0-rc.21",
-    "@vuepress/plugin-git": "^2.0.0-rc.15",
-    "vue": "^3.4.21",
-    "vuepress": "2.0.0-rc.8",
-    "vuepress-plugin-blog2": "2.0.0-rc.20",
-    "vuepress-plugin-photo-swipe": "2.0.0-rc.22",
-    "vuepress-theme-hope": "2.0.0-rc.26"
+    "@vuepress/bundler-vite": "2.0.0-rc.31",
+    "@vuepress/plugin-docsearch": "2.0.0-rc.137",
+    "sass": "^1.105.0",
+    "sass-loader": "^17.0.1",
+    "vue": "^3.5.43",
+    "vuepress": "2.0.0-rc.31",
+    "vuepress-theme-hope": "2.0.0-rc.110"
   }
 }

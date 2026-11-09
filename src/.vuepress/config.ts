@@ -1,7 +1,6 @@
 import { defineUserConfig } from "vuepress";
 import { hopeTheme } from "vuepress-theme-hope";
 import { viteBundler } from '@vuepress/bundler-vite'
-import { gitPlugin } from '@vuepress/plugin-git'
 
 export default defineUserConfig({
 
@@ -9,7 +8,7 @@ export default defineUserConfig({
     viteOptions: {},
     vuePluginOptions: {},
   }),
-  
+
   lang: "zh-CN",
   title: 'Canstor - Blog',
   base: '/vuepress/', //需要设置部署文档的文件名，1.0版本 base字段一定是需要打包的时候才开启，不需要的时候要注释掉，不然npm跑项目就会运行不起来
@@ -20,17 +19,8 @@ export default defineUserConfig({
       'link', { rel: 'icon', href: '/vuepress//assets/img/logo-nav.png' }
     ]
   ],
-  plugins: [
-    gitPlugin({
-      // 配置项
-      createdTime: false,
-      updatedTime: true,
-      contributors:true,
-    }),
-  ],
   theme: hopeTheme({
     logo: '/assets/img/logo-nav.png',
-    iconAssets: "iconfont",
     navbar: [
       { text: '主页', link: '/', icon: "home" },
       {
@@ -72,15 +62,18 @@ export default defineUserConfig({
         link: "/触动函数相关/已封装好的函数.md",
         icon: "interact"
       },
-
       {
         text: "批处理汇总",
         link: '/批处理相关/批处理汇总.md',
         icon: "shell"
       },
-
       {
-        text: 'Python',
+        text: 'FFMPEG 常用技巧汇总',
+        link: '/ffmpeg/水印添加.md',
+        icon: "rank"
+      },
+      {
+        text: 'Python 脚本',
         collapsible: true,
         icon: "python",
         children: [
@@ -89,13 +82,17 @@ export default defineUserConfig({
           { text: '3. 文件按行分割', link: '/Python脚本相关/文件按行分割.md' },
         ]
       },
-
       {
-        text: 'FFMPEG',
+        text: '服务器与代理',
         collapsible: true,
-        icon: "rank",
+        icon: "network",
         children: [
-          { text: '1. 水印添加', link: '/ffmpeg/水印添加.md' }
+          { text: '1. CentOS goproxy S5 代理搭建', link: '/服务器相关/CentOS-goproxy-S5代理搭建.md' },
+          { text: '2. S5 代理搭建', link: '/服务器相关/S5代理搭建.md' },
+          { text: '3. PPTP 搭建', link: '/服务器相关/PPTP搭建.md' },
+          { text: '4. V2Ray 一键脚本', link: '/服务器相关/V2Ray一键脚本.md' },
+          { text: '5. BBR 安装加速', link: '/服务器相关/BBR安装加速.md' },
+          { text: '6. 常用运维命令备忘', link: '/服务器相关/常用运维命令备忘.md' },
         ]
       },
       {
@@ -106,17 +103,14 @@ export default defineUserConfig({
     ],
 
     plugins: {
-      mdEnhance: {
-        // 启用 figure
-        figure: true,
-        // 启用图片懒加载
-        imgLazyload: true,
-        // 启用图片标记
-        imgMark: true,
-        // 启用图片大小
-        imgSize: true,
-        // 选项卡
-        tabs: true,
+      icon: {
+        assets: "https://at.alicdn.com/t/c/font_2410206_5vb9zlyghj.css",
+      },
+      git: {
+        // 配置项
+        createdTime: false,
+        updatedTime: true,
+        contributors: true,
       },
       docsearch: {
         appId: "O8JC6T6M7T",
@@ -129,6 +123,18 @@ export default defineUserConfig({
             },
           }
       },
+    },
+    markdown: {
+      // 启用 figure
+      figure: true,
+      // 启用图片懒加载
+      imgLazyload: true,
+      // 启用图片标记
+      imgMark: true,
+      // 启用图片大小
+      imgSize: true,
+      // 选项卡
+      tabs: true,
     },
     repo: "https://github.com/chenzk14/vuepress.git",
     repoLabel: "GitHub",
