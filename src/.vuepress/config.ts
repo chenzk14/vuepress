@@ -50,7 +50,17 @@ export default defineUserConfig({
       { text: '更新日志', link: '/更新文档.md', icon: "time" },
     ],
 
-    sidebar: [
+    sidebar: {
+      // 随笔目录下的页面显示随笔列表侧边栏
+      "/随笔/": [
+        { text: '人间', link: '/随笔/人间.md' },
+        { text: '回望', link: '/随笔/回望.md' },
+        { text: '疫情之下', link: '/随笔/疫情之下.md' },
+        { text: '枯树时代', link: '/随笔/枯树时代.md' },
+        { text: '失格', link: '/随笔/失格.md' },
+      ],
+      // 其余页面沿用原有侧边栏
+      "/": [
       {
         text: "关于我",
         link: "/about.md",
@@ -104,7 +114,8 @@ export default defineUserConfig({
         link: "/Thunderobot-Hackintosh/我的OS.md",
         icon: "copyright"
       },
-    ],
+      ],
+    },
 
     plugins: {
       icon: {
@@ -114,7 +125,7 @@ export default defineUserConfig({
         // 配置项
         createdTime: false,
         updatedTime: true,
-        contributors: true,
+        contributors: false,
       },
       docsearch: {
         appId: "O8JC6T6M7T",
