@@ -1,11 +1,14 @@
 name: Sync Articles & Build
 
 on:
-  # 定时：每 30 分钟运行一次
+  # 定时：每 30 分钟运行一次（兜底）
   schedule:
     - cron: '*/30 * * * *'
   # 手动触发（在 GitHub 网页上点 Run workflow）
   workflow_dispatch:
+  # 后台发文即时触发（通过 GitHub API 调用 repository_dispatch）
+  repository_dispatch:
+    types: [article-published]
 
 permissions:
   contents: write

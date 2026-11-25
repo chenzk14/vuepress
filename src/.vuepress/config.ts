@@ -11,41 +11,12 @@ export default defineUserConfig({
 
   lang: "zh-CN",
   title: 'ForMonEv - Blog',
-  base: '/', // 部署到云服务域名根路径
+  base: '/vuepress/', // GitHub Pages 子路径部署
   dest: './dist',
   head: [
     [
       // favicon.ico
-      'link', { rel: 'icon', href: '/assets/img/logo-nav.png' }
-    ],
-    [
-      // 自动携带 sharecode：站点需要 sharecode 访问，站内跳转时自动附加，避免 403「链接不完整」
-      'script', {},
-      `(function () {
-        function getSC() {
-          try {
-            var m = location.search.match(/[?&]sharecode=([^&]+)/);
-            if (m) { sessionStorage.setItem('wb_sharecode', m[1]); return m[1]; }
-            return sessionStorage.getItem('wb_sharecode');
-          } catch (e) { return null; }
-        }
-        var sc = getSC();
-        if (!sc) return;
-        document.addEventListener('click', function (e) {
-          var a = e.target && e.target.closest ? e.target.closest('a') : null;
-          if (!a) return;
-          var href = a.getAttribute('href') || '';
-          if (!href || href.indexOf('http') === 0 || href.indexOf('mailto:') === 0 || href.indexOf('javascript:') === 0 || href.indexOf('#') === 0) return;
-          // 站内链接：附加 sharecode
-          try {
-            var u = new URL(href, location.origin);
-            if (u.origin === location.origin) {
-              if (!u.searchParams.has('sharecode')) u.searchParams.set('sharecode', sc);
-              a.setAttribute('href', u.pathname + u.search + u.hash);
-            }
-          } catch (err) {}
-        }, true);
-      })();`
+      'link', { rel: 'icon', href: '/vuepress/assets/img/logo-nav.png' }
     ]
   ],
   theme: hopeTheme({
