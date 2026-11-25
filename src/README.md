@@ -1,5 +1,6 @@
 ---
 home: true
+index: false
 heroImage: /assets/img/logo-nav.png
 heroText: ForMonEv - Blog
 tagline: 简洁至上 - 以 Markdown 为中心的项目结构
