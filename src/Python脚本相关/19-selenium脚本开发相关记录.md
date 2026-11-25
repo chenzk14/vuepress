@@ -1,3 +1,11 @@
+---
+title: "Selenium脚本开发相关记录"
+date: 2026-11-25
+source: backend
+---
+
+<div class="article-source-badge">后台上传</div>
+
 # 二. 开发selenium项目时的一些记录
 
 ::: tip Document description
@@ -70,4 +78,3 @@ pathDir = os.listdir(sourceDirs)
         path = sourceDirs + "\\" + name
         print(path)
 ```
-

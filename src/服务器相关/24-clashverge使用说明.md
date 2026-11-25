@@ -1,7 +1,10 @@
 ---
-icon: safe
-order: 7
+title: "ClashVerge使用说明"
+date: 2026-11-25
+source: backend
 ---
+
+<div class="article-source-badge">后台上传</div>
 
 # Clash Verge 使用说明
 

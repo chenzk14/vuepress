@@ -1,3 +1,11 @@
+---
+title: "BBR安装加速"
+date: 2026-11-25
+source: backend
+---
+
+<div class="article-source-badge">后台上传</div>
+
 # BBR 安装加速
 
 ## 一键安装

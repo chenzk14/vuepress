@@ -1,3 +1,11 @@
+---
+title: "PPTP搭建"
+date: 2026-11-25
+source: backend
+---
+
+<div class="article-source-badge">后台上传</div>
+
 # PPTP 搭建
 
 ## 一键脚本安装

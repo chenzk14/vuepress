@@ -35,12 +35,13 @@ export default defineUserConfig({
         ]
       },
       { text: '个人文档记录', link: '/about.md', icon: "stack" },
-      { text: '个人作品集', link: '/个人作品集/个人作品集.md', icon: "palette" },
+      { text: '个人作品集', link: '/个人作品集/16-个人作品集.md', icon: "palette" },
       // {text: '关于我', link: '/个人作品集/jl.md',icon:"profile"},
       { text: '更新日志', link: '/更新文档.md', icon: "time" },
     ],
 
     // 自动侧边栏：按文件夹结构自动生成，后台新增分类自动出现
+    // 一级目录分类（单文件）由 fetch 脚本把文章内容写入 README 并设置 dir.link，实现单链接项
     sidebar: 'structure',
     sidebarSorter: ['readme', 'order', 'filename', 'title'],
 

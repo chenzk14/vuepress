@@ -1,3 +1,11 @@
+---
+title: "V2Ray一键脚本"
+date: 2026-11-25
+source: backend
+---
+
+<div class="article-source-badge">后台上传</div>
+
 # V2Ray 一键脚本
 
 ::: danger 注意

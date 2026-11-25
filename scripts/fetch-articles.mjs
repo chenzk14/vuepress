@@ -46,7 +46,7 @@ async function cloudGet(path) {
 
 // 拉取分类配置
 async function fetchCategories() {
-  return await cloudGet('/.cloud/database/rest/categories?select=folder,name,sort_order,icon,visible&data_env=eq.prod&order=sort_order.asc');
+  return await cloudGet('/.cloud/database/rest/categories?select=folder,name,sort_order,icon,visible,is_root&data_env=eq.prod&order=sort_order.asc');
 }
 
 // 拉取已发布文章
@@ -121,10 +121,36 @@ function buildArticleFrontmatter(a) {
 }
 
 // 生成目录页 README.md
-// 注意：index: false 让 README 不生成独立页面，仅作为侧边栏分类配置载体
-// visible: false 的分类，加 dir.index: false，让整个目录不进侧边栏
-function buildCategoryPage(cat) {
+// 普通分类：index: false 让 README 不生成独立页面，仅作为侧边栏分类配置载体
+//   visible: false 的分类，加 dir.index: false，让整个目录不进侧边栏
+// 一级目录（is_root + 单文件）：把文章内容写入 README，dir.link + collapsible false，
+//   让该分类在侧边栏渲染为单个可点击链接（点进即文章内容），不显示下拉/子项
+function buildCategoryPage(cat, singleArticle) {
   const visible = cat.visible !== false;
+  if (singleArticle) {
+    // 一级目录单文件：README 承载文章内容
+    const a = singleArticle;
+    const date = (a.created_at || '').slice(0, 10);
+    const lines = [
+      '---',
+      `title: "${escapeFrontmatter(a.title)}"`,
+      `icon: ${cat.icon || 'folder'}`,
+      `date: ${date}`,
+      ...(a.summary ? [`description: "${escapeFrontmatter(a.summary)}"`] : []),
+      'dir:',
+      `  order: ${cat.sort_order ?? 0}`,
+      `  text: "${escapeFrontmatter(cat.name)}"`,
+      `  link: true`,
+      `  collapsible: false`,
+      `source: category-page`,
+      '---',
+      '',
+      (a.content || '').trim(),
+      '',
+      ''
+    ];
+    return lines.join('\n');
+  }
   const lines = [
     '---',
     `title: "${escapeFrontmatter(cat.name)}"`,
@@ -152,21 +178,50 @@ async function main() {
   console.log('[2/4] 清理旧的后台生成文件...');
   cleanGeneratedFiles(SRC_DIR);
 
-  console.log('[3/4] 生成分类目录页...');
+  console.log('[3/4] 拉取文章...');
+  const articles = await fetchArticles();
+  console.log(`  共 ${articles.length} 篇已发布文章`);
+
+  // 计算每个分类下的文章（category 精确等于 folder）
+  const catArticlesMap = {};
+  for (const a of articles) {
+    const cats = parseCategory(a.category);
+    if (cats.length === 1) {
+      const folder = cats[0];
+      (catArticlesMap[folder] || (catArticlesMap[folder] = [])).push(a);
+    }
+  }
+
+  console.log('[4/4] 生成目录页与文章 md...');
+  // 记录被「合并进 README」的一级目录单文件分类，跳过生成独立文章
+  const mergedFolders = new Set();
+
   for (const cat of categories) {
     const dir = join(SRC_DIR, cat.folder);
     mkdirSync(dir, { recursive: true });
-    const page = buildCategoryPage(cat);
-    writeFileSync(join(dir, 'README.md'), page, 'utf8');
-    console.log(`  目录页 ${cat.folder} -> "${cat.name}" (order=${cat.sort_order}, icon=${cat.icon})`);
+    const catArticles = catArticlesMap[cat.folder] || [];
+
+    // 一级目录 + 单文件：文章内容合并到 README，不生成独立文章
+    if (cat.is_root === true && catArticles.length === 1) {
+      const single = catArticles[0];
+      const page = buildCategoryPage(cat, single);
+      writeFileSync(join(dir, 'README.md'), page, 'utf8');
+      mergedFolders.add(cat.folder);
+      console.log(`  一级目录 ${cat.folder} -> "${cat.name}" 合并文章「${single.title}」到 README`);
+    } else {
+      const page = buildCategoryPage(cat);
+      writeFileSync(join(dir, 'README.md'), page, 'utf8');
+      console.log(`  目录页 ${cat.folder} -> "${cat.name}" (order=${cat.sort_order}, icon=${cat.icon}, 文章 ${catArticles.length} 篇)`);
+    }
   }
 
-  console.log('[4/4] 拉取文章并生成 md...');
-  const articles = await fetchArticles();
-  console.log(`  共 ${articles.length} 篇已发布文章`);
   for (const a of articles) {
     const cats = parseCategory(a.category);
     const pathParts = cats.length > 0 ? cats : ['随笔'];
+    // 若该文章所属分类是「一级目录单文件」，其内容已合并进 README，跳过独立文件
+    if (pathParts.length === 1 && mergedFolders.has(pathParts[0])) {
+      continue;
+    }
     const fileName = `${a.id}-${slug(a.title)}.md`;
     const dir = join(SRC_DIR, ...pathParts);
     mkdirSync(dir, { recursive: true });
