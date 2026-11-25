@@ -1,0 +1,12 @@
+diff --git a/package.json b/package.json
+index c37a5362657035a5abc0fdb65dccaafde5f48764..f68a7bf18c888cfbff01079896b4826ce0ae69f4 100644
+--- a/package.json
++++ b/package.json
+@@ -124,5 +124,6 @@
+     "react-dom": "preact/compat",
+     "buffer": false,
+     "process": false
+-  }
++  },
++  "type": "module"
+ }

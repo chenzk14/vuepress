@@ -2,3 +2,5 @@ allowBuilds:
   '@parcel/watcher': true
   esbuild: true
   vue-demi: true
+patchedDependencies:
+  fflate@0.8.3: patches/fflate@0.8.3.patch
