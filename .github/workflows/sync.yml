@@ -39,14 +39,15 @@ jobs:
 
       - name: Deploy dist to master branch
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
           # 克隆 master 分支到临时目录
           DEPLOY_DIR=$(mktemp -d)
           git clone --single-branch --branch master https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/chenzk14/vuepress.git "$DEPLOY_DIR"
           # 同步 dist 内容（排除 .git）
           rsync -a --delete --exclude='.git' dist/ "$DEPLOY_DIR/"
           cd "$DEPLOY_DIR"
+          # 在临时目录里设置 git 身份（否则 commit 会因 empty ident 失败）
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
           git add -A
           git commit --allow-empty -m "sync: update site $(date -u +'%Y-%m-%d %H:%M')" || echo "no changes"
           git push origin master
