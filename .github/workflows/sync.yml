@@ -1,0 +1,49 @@
+name: Sync Articles & Build
+
+on:
+  # 定时：每 30 分钟运行一次
+  schedule:
+    - cron: '*/30 * * * *'
+  # 手动触发（在 GitHub 网页上点 Run workflow）
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync-and-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Fetch articles from cloud
+        run: node scripts/fetch-articles.mjs
+
+      - name: Build VuePress
+        run: npm run docs:build
+
+      - name: Deploy dist to master branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          # 克隆 master 分支到临时目录
+          DEPLOY_DIR=$(mktemp -d)
+          git clone --single-branch --branch master https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/chenzk14/vuepress.git "$DEPLOY_DIR"
+          # 同步 dist 内容（排除 .git）
+          rsync -a --delete --exclude='.git' dist/ "$DEPLOY_DIR/"
+          cd "$DEPLOY_DIR"
+          git add -A
+          git commit --allow-empty -m "sync: update site $(date -u +'%Y-%m-%d %H:%M')" || echo "no changes"
+          git push origin master
