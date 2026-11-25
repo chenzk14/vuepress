@@ -34,6 +34,7 @@ export default defineUserConfig({
           { text: 'iconfont - 阿里团队图标字体及图标素材下载平台', link: 'https://www.iconfont.cn/' },
         ]
       },
+      { text: '动态文章', link: '/动态文章/index.md', icon: "blog" },
       { text: '个人文档记录', link: '/about.md', icon: "stack" },
       { text: '个人作品集', link: '/个人作品集/个人作品集.md', icon: "palette" },
       {
@@ -51,6 +52,10 @@ export default defineUserConfig({
     ],
 
     sidebar: {
+      // 动态文章目录
+      "/动态文章/": [
+        { text: '文章列表', link: '/动态文章/index.md' },
+      ],
       // 随笔目录下的页面显示随笔列表侧边栏
       "/随笔/": [
         { text: '人间', link: '/随笔/人间.md' },
