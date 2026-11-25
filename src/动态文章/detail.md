@@ -1,5 +1,7 @@
 ---
 title: 文章详情
+sidebar: false
+toc: false
 ---
 
 <DynamicBlogDetail />

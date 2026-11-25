@@ -1,5 +1,7 @@
 ---
 title: 动态文章
+sidebar: false
+toc: false
 ---
 
 # 动态文章
