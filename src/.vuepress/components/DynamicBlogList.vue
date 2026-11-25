@@ -11,7 +11,7 @@
         v-for="a in articles"
         :key="a.id"
         class="dyn-card"
-        :href="'/vuepress/动态文章/detail.html?id=' + a.id"
+        :href="'/动态文章/detail.html?id=' + a.id"
       >
         <div class="dyn-card-cover" v-if="a.cover">
           <img :src="a.cover" :alt="a.title" loading="lazy">

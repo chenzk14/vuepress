@@ -7,7 +7,7 @@
     </div>
     <div v-else-if="!article" class="dyn-error">
       <p>文章不存在或未发布</p>
-      <a class="dyn-retry" href="/vuepress/动态文章/index.html">返回列表</a>
+      <a class="dyn-retry" href="/动态文章/index.html">返回列表</a>
     </div>
     <article v-else class="dyn-article">
       <header class="dyn-header">
@@ -23,7 +23,7 @@
       </div>
       <div class="dyn-content" v-html="renderMarkdown(article.content)"></div>
       <footer class="dyn-footer">
-        <a class="dyn-retry" href="/vuepress/动态文章/index.html">← 返回列表</a>
+        <a class="dyn-retry" href="/动态文章/index.html">← 返回列表</a>
       </footer>
     </article>
   </div>

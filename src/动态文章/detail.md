@@ -10,7 +10,7 @@ onMounted(() => {
   if (!window.WorkBuddyCloud && !document.getElementById('wb-cloud-sdk')) {
     const s = document.createElement('script')
     s.id = 'wb-cloud-sdk'
-    s.src = '/vuepress/workbuddy-cloud-sdk.global.js'
+    s.src = '/workbuddy-cloud-sdk.global.js'
     s.onload = () => window.dispatchEvent(new Event('wb-cloud-sdk-ready'))
     document.head.appendChild(s)
   }
