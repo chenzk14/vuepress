@@ -121,11 +121,13 @@ function buildArticleFrontmatter(a) {
 }
 
 // 生成目录页 README.md
+// 注意：index: false 让 README 不生成独立页面，仅作为侧边栏分类配置载体
 function buildCategoryPage(cat) {
   const lines = [
     '---',
     `title: "${escapeFrontmatter(cat.name)}"`,
     `icon: ${cat.icon || 'folder'}`,
+    `index: false`,
     'dir:',
     `  order: ${cat.sort_order ?? 0}`,
     `  text: "${escapeFrontmatter(cat.name)}"`,

@@ -1,6 +1,7 @@
 ---
 title: "触动精灵函数"
 icon: interact
+index: false
 dir:
   order: 3
   text: "触动精灵函数"

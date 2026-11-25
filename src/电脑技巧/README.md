@@ -1,6 +1,7 @@
 ---
 title: "电脑技巧"
 icon: blog
+index: false
 dir:
   order: 7
   text: "电脑技巧"
