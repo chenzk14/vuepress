@@ -1,3 +1,8 @@
+---
+title: 关于我
+order: 1
+---
+
 # 关于我
 
 vuepress文档

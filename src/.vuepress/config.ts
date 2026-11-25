@@ -36,16 +36,6 @@ export default defineUserConfig({
       },
       { text: '个人文档记录', link: '/about.md', icon: "stack" },
       { text: '个人作品集', link: '/个人作品集/个人作品集.md', icon: "palette" },
-      {
-        text: '随笔',
-        icon: "note",
-        children: ['/随笔/人间.md',
-          '/随笔/回望.md',
-          '/随笔/疫情之下.md',
-          '/随笔/枯树时代.md',
-          '/随笔/失格.md'
-        ]
-      },
       // {text: '关于我', link: '/个人作品集/jl.md',icon:"profile"},
       { text: '更新日志', link: '/更新文档.md', icon: "time" },
     ],

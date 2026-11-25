@@ -46,7 +46,7 @@ async function cloudGet(path) {
 
 // 拉取分类配置
 async function fetchCategories() {
-  return await cloudGet('/.cloud/database/rest/categories?select=folder,name,sort_order,icon&data_env=eq.prod&order=sort_order.asc');
+  return await cloudGet('/.cloud/database/rest/categories?select=folder,name,sort_order,icon,visible&data_env=eq.prod&order=sort_order.asc');
 }
 
 // 拉取已发布文章
@@ -122,7 +122,9 @@ function buildArticleFrontmatter(a) {
 
 // 生成目录页 README.md
 // 注意：index: false 让 README 不生成独立页面，仅作为侧边栏分类配置载体
+// visible: false 的分类，加 dir.index: false，让整个目录不进侧边栏
 function buildCategoryPage(cat) {
+  const visible = cat.visible !== false;
   const lines = [
     '---',
     `title: "${escapeFrontmatter(cat.name)}"`,
@@ -131,6 +133,7 @@ function buildCategoryPage(cat) {
     'dir:',
     `  order: ${cat.sort_order ?? 0}`,
     `  text: "${escapeFrontmatter(cat.name)}"`,
+    `  index: ${visible}`,
     `source: category-page`,
     '---',
     '',
