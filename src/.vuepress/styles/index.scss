@@ -1,1 +1,14 @@
 // place your custom styles here
+
+// 后台上传文章标识
+.article-source-badge {
+  display: inline-block;
+  padding: 2px 10px;
+  margin-bottom: 12px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: #15803d;
+  background: rgba(22, 163, 74, 0.12);
+  border: 1px solid rgba(22, 163, 74, 0.3);
+  border-radius: 999px;
+}

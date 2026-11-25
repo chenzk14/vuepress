@@ -34,7 +34,6 @@ export default defineUserConfig({
           { text: 'iconfont - 阿里团队图标字体及图标素材下载平台', link: 'https://www.iconfont.cn/' },
         ]
       },
-      { text: '动态文章', link: '/动态文章/index.md', icon: "blog" },
       { text: '个人文档记录', link: '/about.md', icon: "stack" },
       { text: '个人作品集', link: '/个人作品集/个人作品集.md', icon: "palette" },
       {
@@ -51,76 +50,9 @@ export default defineUserConfig({
       { text: '更新日志', link: '/更新文档.md', icon: "time" },
     ],
 
-    sidebar: {
-      // 动态文章目录
-      "/动态文章/": [
-        { text: '文章列表', link: '/动态文章/index.md' },
-      ],
-      // 随笔目录下的页面显示随笔列表侧边栏
-      "/随笔/": [
-        { text: '人间', link: '/随笔/人间.md' },
-        { text: '回望', link: '/随笔/回望.md' },
-        { text: '疫情之下', link: '/随笔/疫情之下.md' },
-        { text: '枯树时代', link: '/随笔/枯树时代.md' },
-        { text: '失格', link: '/随笔/失格.md' },
-      ],
-      // 其余页面沿用原有侧边栏
-      "/": [
-      {
-        text: "关于我",
-        link: "/about.md",
-        icon: "people"
-      },
-      {
-        text: "触动精灵函数",
-        link: "/触动函数相关/已封装好的函数.md",
-        icon: "interact"
-      },
-      {
-        text: "批处理汇总",
-        link: '/批处理相关/批处理汇总.md',
-        icon: "shell"
-      },
-      {
-        text: 'FFMPEG 常用技巧汇总',
-        link: '/ffmpeg/水印添加.md',
-        icon: "rank"
-      },
-      {
-        text: 'Clash Verge 使用说明',
-        link: '/服务器相关/ClashVerge使用说明.md',
-        icon: "safe"
-      },
-      {
-        text: 'Python 脚本',
-        collapsible: true,
-        icon: "python",
-        children: [
-          { text: '1. 批量随机合成文件夹内的所有图片', link: '/Python脚本相关/批量随机合成文件夹内的所有图片.md' },
-          { text: '2. Selenium脚本开发相关记录', link: '/Python脚本相关/Selenium脚本开发相关记录.md' },
-          { text: '3. 文件按行分割', link: '/Python脚本相关/文件按行分割.md' },
-        ]
-      },
-      {
-        text: '服务器与代理搭建',
-        collapsible: true,
-        icon: "network",
-        children: [
-          { text: '1. CentOS goproxy S5 代理搭建', link: '/服务器相关/CentOS-goproxy-S5代理搭建.md' },
-          { text: '2. S5 代理搭建', link: '/服务器相关/S5代理搭建.md' },
-          { text: '3. PPTP 搭建', link: '/服务器相关/PPTP搭建.md' },
-          { text: '4. V2Ray 一键脚本', link: '/服务器相关/V2Ray一键脚本.md' },
-          { text: '5. BBR 安装加速', link: '/服务器相关/BBR安装加速.md' },
-          { text: '6. 常用运维命令备忘', link: '/服务器相关/常用运维命令备忘.md' },
-        ]
-      },
-      {
-        text: "黑苹果配置",
-        link: "/Thunderobot-Hackintosh/我的OS.md",
-        icon: "copyright"
-      },
-      ],
-    },
+    // 自动侧边栏：按文件夹结构自动生成，后台新增分类自动出现
+    sidebar: 'structure',
+    sidebarSorter: ['readme', 'order', 'filename', 'title'],
 
     plugins: {
       icon: {

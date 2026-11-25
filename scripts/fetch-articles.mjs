@@ -1,13 +1,17 @@
 // 从云数据库拉取已发布文章，生成本地 md 文件
 // 用法：node scripts/fetch-articles.mjs
 // 依赖：Node 18+（内置 fetch）
-import { writeFileSync, mkdirSync, rmSync, readFileSync, existsSync } from 'node:fs';
+//
+// 分类规则：后台分类用 "/" 分层（如 "服务器相关/Clash"），
+// 生成到 src/<一级分类>/<二级分类或文章>.md，与本地 md 共存。
+// 后台文章 frontmatter 带 source: backend，同步时只清理 backend 文章，保留本地文章。
+import { writeFileSync, mkdirSync, rmSync, existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
-const TARGET_DIR = join(ROOT, 'src', '动态文章', 'posts');
+const SRC_DIR = join(ROOT, 'src');
 
 const ENDPOINT = 'https://blog-articles-32153.app.workbuddy.host';
 const PUBLISHABLE_KEY = 'wbpk_WqP1SbYX2hJnsmuLngvzLI_llgq32Cu47i8NHlY65lPKaBEef1sXWE3';
@@ -38,20 +42,63 @@ async function fetchArticles() {
   return await res.json();
 }
 
+// 解析分类 "A/B/C" -> ["A", "B", "C"]
+function parseCategory(category) {
+  return String(category || '')
+    .split('/')
+    .map((s) => s.trim())
+    .filter(Boolean);
+}
+
+// 判断一个 md 文件是否是后台生成（frontmatter 含 source: backend）
+function isBackendFile(filePath) {
+  try {
+    const content = readFileSync(filePath, 'utf8');
+    // 只看 frontmatter（文件开头 --- ... --- 之间）
+    const m = content.match(/^---\n([\s\S]*?)\n---/);
+    if (!m) return false;
+    return /^source:\s*["']?backend["']?\s*$/m.test(m[1]);
+  } catch (e) {
+    return false;
+  }
+}
+
+// 递归删除目录里所有 source: backend 的 md 文件，并清理空目录
+function cleanBackendFiles(dir) {
+  if (!existsSync(dir)) return;
+  const entries = readdirSync(dir, { withFileTypes: true });
+  for (const entry of entries) {
+    const full = join(dir, entry.name);
+    if (entry.isDirectory()) {
+      cleanBackendFiles(full);
+      // 若目录变空则删除
+      try {
+        if (readdirSync(full).length === 0) rmSync(full, { recursive: true, force: true });
+      } catch (e) {}
+    } else if (entry.name.endsWith('.md') && isBackendFile(full)) {
+      rmSync(full, { force: true });
+    }
+  }
+}
+
 function buildFrontmatter(a) {
   const date = (a.created_at || '').slice(0, 10);
+  const cats = parseCategory(a.category);
   const lines = [
     '---',
     `title: "${escapeFrontmatter(a.title)}"`,
     `date: ${date}`,
-    `category: ${a.category || '随笔'}`,
+    `source: backend`,
     `sidebar: false`,
     '---',
     ''
   ];
   if (a.summary) {
-    // 摘要作为 frontmatter 的描述
     lines.splice(1, 0, `description: "${escapeFrontmatter(a.summary)}"`);
+  }
+  // 记录原始分类（用于索引）
+  if (cats.length > 0) {
+    lines.splice(lines.length - 2, 0, `tags:\n  - ${cats.map((c) => escapeFrontmatter(c)).join('\n  - ')}`);
   }
   return lines.join('\n');
 }
@@ -61,34 +108,32 @@ async function main() {
   const articles = await fetchArticles();
   console.log(`  共 ${articles.length} 篇已发布文章`);
 
-  // 清空并重建 posts 目录
-  if (existsSync(TARGET_DIR)) {
-    rmSync(TARGET_DIR, { recursive: true, force: true });
-  }
-  mkdirSync(TARGET_DIR, { recursive: true });
+  // 清理之前生成的后台文章（只清 source: backend 的）
+  console.log('[1.5/3] 清理旧的后台文章...');
+  cleanBackendFiles(SRC_DIR);
 
   console.log('[2/3] 生成 md 文件...');
-  const listItems = [];
+  const generated = [];
   for (const a of articles) {
-    const name = `${a.id}-${slug(a.title)}.md`;
-    const content = buildFrontmatter(a) + (a.content || '');
-    writeFileSync(join(TARGET_DIR, name), content, 'utf8');
-    const date = (a.created_at || '').slice(0, 10);
-    listItems.push(`- [${a.title}](./posts/${name}) · ${date}${a.category ? ' · ' + a.category : ''}`);
-    console.log(`  生成 ${name}`);
+    const cats = parseCategory(a.category);
+    // 默认分类「随笔」
+    const pathParts = cats.length > 0 ? cats : ['随笔'];
+    // 文件路径：src/<一级>/<二级...>/<id-标题>.md
+    // 若分类只有一级，则文章直接放该文件夹下
+    const dirParts = pathParts;
+    const fileName = `${a.id}-${slug(a.title)}.md`;
+    const dir = join(SRC_DIR, ...dirParts);
+    mkdirSync(dir, { recursive: true });
+    const content = buildFrontmatter(a) + '\n<div class="article-source-badge">后台上传</div>\n\n' + (a.content || '');
+    const fullPath = join(dir, fileName);
+    writeFileSync(fullPath, content, 'utf8');
+    generated.push({ id: a.id, title: a.title, category: cats, path: fullPath });
+    console.log(`  生成 ${a.category || '随笔'} -> ${fileName}`);
   }
 
-  console.log('[3/3] 生成列表页 index.md...');
-  const indexPath = join(ROOT, 'src', '动态文章', 'index.md');
-  let indexContent = `---\ntitle: 动态文章\nsidebar: false\ntoc: false\n---\n\n# 动态文章\n\n这里展示通过「网页后台」在线发布的文章。\n\n`;
-  if (listItems.length === 0) {
-    indexContent += '暂无文章。\n';
-  } else {
-    indexContent += listItems.join('\n') + '\n';
-  }
-  writeFileSync(indexPath, indexContent, 'utf8');
-  console.log(`  更新 ${indexPath}`);
-  console.log('\n完成！');
+  console.log('[3/3] 完成！');
+  console.log(`  共生成 ${generated.length} 篇后台文章`);
+  console.log('  注意：后台文章已按分类放入对应文件夹，与本地 md 共存');
 }
 
 main().catch((e) => {
