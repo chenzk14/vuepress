@@ -6,6 +6,7 @@ title: 文章详情
 
 <script setup>
 import { onMounted } from 'vue'
+import DynamicBlogDetail from '../.vuepress/components/DynamicBlogDetail.vue'
 onMounted(() => {
   if (!window.WorkBuddyCloud && !document.getElementById('wb-cloud-sdk')) {
     const s = document.createElement('script')

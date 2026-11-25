@@ -10,6 +10,7 @@ title: 动态文章
 
 <script setup>
 import { onMounted } from 'vue'
+import DynamicBlogList from '../.vuepress/components/DynamicBlogList.vue'
 onMounted(() => {
   if (!window.WorkBuddyCloud && !document.getElementById('wb-cloud-sdk')) {
     const s = document.createElement('script')
