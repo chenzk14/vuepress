@@ -83,7 +83,7 @@ export default {
         .select('id, title, summary, content, category, cover, created_at, owner_name')
         .eq('id', id)
         .eq('status', 'published')
-        .eq('env', 'prod')
+        .eq('data_env', 'prod')
         .maybeSingle()
       if (res.error) {
         this.error = res.error.message || res.error.code || '未知错误'
