@@ -1,5 +1,10 @@
 // place your custom styles here
 
+// 首页关闭 features 后，让 hero 区域在视口内垂直居中
+.vp-project-home .vp-hero-info-wrapper {
+  min-height: calc(100vh - var(--navbar-height));
+}
+
 // 后台上传文章标识
 .article-source-badge {
   display: inline-block;

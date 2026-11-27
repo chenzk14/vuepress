@@ -17,6 +17,9 @@ const SRC_DIR = join(ROOT, 'src');
 const ENDPOINT = 'https://blog-articles-32153.app.workbuddy.host';
 const PUBLISHABLE_KEY = 'wbpk_WqP1SbYX2hJnsmuLngvzLI_llgq32Cu47i8NHlY65lPKaBEef1sXWE3';
 
+// 这些分类下的页面不显示侧边栏（frontmatter: sidebar: false）
+const NO_SIDEBAR_FOLDERS = new Set(['个人作品集']);
+
 function slug(text) {
   return String(text || '')
     .trim()
@@ -123,11 +126,13 @@ function buildArticleFrontmatter(a) {
   const date = (a.created_at || '').slice(0, 10);
   const cats = parseCategory(a.category);
   const hasOrder = a.sort_order != null && a.sort_order !== '';
+  const noSidebar = cats.some((c) => NO_SIDEBAR_FOLDERS.has(c));
   const lines = [
     '---',
     `title: "${escapeFrontmatter(a.title)}"`,
     `date: ${date}`,
     ...(hasOrder ? [`order: ${a.sort_order}`] : []),
+    ...(noSidebar ? ['sidebar: false'] : []),
     `source: backend`,
     '---',
     ''
@@ -145,6 +150,7 @@ function buildArticleFrontmatter(a) {
 //   让该分类在侧边栏渲染为单个可点击链接（点进即文章内容），不显示下拉/子项
 function buildCategoryPage(cat, singleArticle) {
   const visible = cat.visible !== false;
+  const noSidebar = NO_SIDEBAR_FOLDERS.has(cat.folder);
   if (singleArticle) {
     // 一级目录单文件：README 承载文章内容
     const a = singleArticle;
@@ -155,6 +161,7 @@ function buildCategoryPage(cat, singleArticle) {
       `icon: ${cat.icon || 'folder'}`,
       `date: ${date}`,
       ...(a.summary ? [`description: "${escapeFrontmatter(a.summary)}"`] : []),
+      ...(noSidebar ? ['sidebar: false'] : []),
       'dir:',
       `  order: ${cat.sort_order ?? 1}`,
       `  text: "${escapeFrontmatter(cat.name)}"`,
@@ -174,6 +181,7 @@ function buildCategoryPage(cat, singleArticle) {
     `title: "${escapeFrontmatter(cat.name)}"`,
     `icon: ${cat.icon || 'folder'}`,
     `index: false`,
+    ...(noSidebar ? ['sidebar: false'] : []),
     'dir:',
     `  order: ${cat.sort_order ?? 1}`,
     `  text: "${escapeFrontmatter(cat.name)}"`,

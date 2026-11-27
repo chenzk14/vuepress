@@ -27,7 +27,6 @@ export default defineUserConfig({
         text: '导航',
         icon: "overflow",
         children: [
-          { text: '天航 - 14元200G,自用推荐', link: 'http://tianhang.lol/auth/register?code=sXVg' },
           { text: '花瓣 - 灵感素材网站', link: 'https://huaban.com/' },
           { text: '奇迹秀 - 资源导航网站', link: 'https://www.qijishow.com/' },
           { text: 'iconmoon - 矢量图打包成图标字体的网站', link: 'https://icomoon.io/' },

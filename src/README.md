@@ -4,19 +4,7 @@ index: false
 heroImage: /assets/img/logo-nav.png
 heroText: ForMonEv - Blog
 tagline: 简洁至上 - 以 Markdown 为中心的项目结构
-features:
-  - title: 个人作品集
-    icon: palette
-    details: 正在玩命绘图中......
-    link: /个人作品集/个人作品集.md
-  - title: 个人文档记录
-    icon: write
-    details:  工作项目中累计的小技巧
-    link: /about.md
-  - title: 随笔集
-    icon: note
-    details:  一些带情绪的文字......
-    link: /随笔/疫情之下.md
+features: false
 actions:
   - text: 进入主页
     link: /about
