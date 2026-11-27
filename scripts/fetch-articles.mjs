@@ -29,6 +29,22 @@ function escapeFrontmatter(s) {
   return String(s == null ? '' : s).replace(/"/g, '\\"').replace(/\n/g, '\\n');
 }
 
+// 正文解码：后台存储时对 content 做了 'ENC:' + base64 编码以规避 WAF 误拦。
+// 带前缀的进行解码，非编码格式（明文）原样返回。
+const ENC_PREFIX = 'ENC:';
+function decodeContent(text) {
+  if (text == null) return text;
+  const s = String(text);
+  if (s.indexOf(ENC_PREFIX) !== 0) return s;
+  const b64 = s.slice(ENC_PREFIX.length);
+  try {
+    const bytes = Buffer.from(b64, 'base64');
+    return bytes.toString('utf8');
+  } catch (e) {
+    return s; // 解码失败原样返回
+  }
+}
+
 // 统一请求封装
 async function cloudGet(path) {
   const url = `${ENDPOINT}${path}`;
@@ -145,7 +161,7 @@ function buildCategoryPage(cat, singleArticle) {
       `source: category-page`,
       '---',
       '',
-      (a.content || '').trim(),
+      decodeContent(a.content).trim(),
       '',
       ''
     ];
@@ -225,7 +241,7 @@ async function main() {
     const fileName = `${a.id}-${slug(a.title)}.md`;
     const dir = join(SRC_DIR, ...pathParts);
     mkdirSync(dir, { recursive: true });
-    const content = buildArticleFrontmatter(a) + '\n<div class="article-source-badge">后台上传</div>\n\n' + (a.content || '');
+    const content = buildArticleFrontmatter(a) + '\n<div class="article-source-badge">后台上传</div>\n\n' + (decodeContent(a.content) || '');
     writeFileSync(join(dir, fileName), content, 'utf8');
     console.log(`  文章 ${a.category || '随笔'} -> ${fileName}`);
   }

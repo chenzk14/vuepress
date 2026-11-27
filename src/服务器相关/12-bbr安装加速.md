@@ -6,8 +6,6 @@ source: backend
 
 <div class="article-source-badge">后台上传</div>
 
-# BBR 安装加速
-
 ## 一键安装
 
 ```bash

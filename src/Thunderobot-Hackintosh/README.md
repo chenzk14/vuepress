@@ -3,7 +3,7 @@ title: "我的OS"
 icon: copyright
 date: 2026-11-25
 dir:
-  order: 9
+  order: 6
   text: "黑苹果配置"
   link: true
   collapsible: false
@@ -11,8 +11,6 @@ source: category-page
 ---
 
 # 黑苹果
-
-## **我的 EFI文件**
 
 安装过程不做说明，网上一大把,可参考这位博主的博客:  [国光](https://apple.sqlsec.com/2-%E5%90%AF%E5%8A%A8%E7%9B%98%E5%88%B6%E4%BD%9C/2-1.html)
 

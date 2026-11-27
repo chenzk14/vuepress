@@ -1,13 +1,119 @@
 ---
-title: "FFMPEG 常用技巧汇总"
+title: "水印添加"
 icon: rank
-index: false
+date: 2026-11-25
 dir:
-  order: 6
+  order: 4
   text: "FFMPEG 常用技巧汇总"
-  index: true
+  link: true
+  collapsible: false
 source: category-page
 ---
 
 # FFMPEG 常用技巧汇总
+
+#### ffmpeg下载地址：[ffmpeg官网地址](http://ffmpeg.org/)
+使用：将以下批处理保存为 **_.bat_** 文件
+
+### 1. 批量视频添加水印(图片水印)
+
+| 参数 | 类型 | 说明 |
+| ----- | ----- | -- |
+|  **C:\Users\USER\Desktop\ff\*.mp4**  | **-** | 视频文件夹路径 |
+|   **C:\Users\USER\Desktop\ff\WechatIMG1093.jpeg**  | **-** | 水印图片路径 |
+|   **-"overlay="**  | **-** | 水印图片的位置 |
+|   **main_w-overlay_w:10**  | **-** | 右上角 |
+|   **overlay=10:10**  | **-** | 左上角 |
+|   **overlay=main_w-overlay_w-10:main_h-overlay_h-10**  | **-** | 右下角 |
+|   **overlay=10:main_h-overlay_h-10**  | **-** | 左下角 |
+|   **overlay=main_w/2-overlay_w/2:main_h/2-overlay_h/2**  | **-** | 中间 |
+
+```batch
+@echo off
+for %%a in ("C:\Users\USER\Desktop\ff\*.mp4") do ffmpeg -y -i "%%a" -i C:\Users\USER\Desktop\ff\WechatIMG1093.jpeg -filter_complex "[0:v][1:v]overlay=main_w-overlay_w:10" E:\ERK\output\%%~na.mp4
+pause 
+```
+
+### 2. 批量添加周期显示的文字水印
+
+::: tip 字体路径注意
+`fontfile` 必须使用**绝对路径**且不能含空格，Windows 推荐直接用系统字体 `C:/Windows/Fonts/simsun.ttc`（宋体）。相对路径或带空格的路径会导致滤镜解析失败。
+:::
+
+```batch
+@echo off
+for %%a in ("E:\ERK\input\*.mp4") do ffmpeg -y -i "%%a" -vf "drawtext=fontcolor=white:text='XXXXXXXX':fontfile='C\:/Windows/Fonts/simsun.ttc':x=(w-tw)/2:y=(h-th)/2:fontsize=20:enable=lt(mod(t\,120)\,30),drawtext=fontcolor=white:text='XXXXXXXXXXX':fontfile='C\:/Windows/Fonts/simsun.ttc':x=(w-tw)/2+30:y=(h-th)/2+40:fontsize=20:enable=lt(mod(t\,120)\,30),drawtext=fontcolor=white:text='XXXXXXXXXX!':fontfile='C\:/Windows/Fonts/simsun.ttc':x=(w-tw)/2+30:y=(h-th)/2+80:fontsize=20:enable=lt(mod(t\,120)\,30),drawtext=fontcolor=white:text='completely free!':fontfile='C\:/Windows/Fonts/simsun.ttc':x=(w-tw)/2+30:y=(h-th)/2+120:fontsize=20:enable=lt(mod(t\,120)\,30),drawtext=fontcolor=red:text='XXXXXXXX':fontfile='C\:/Windows/Fonts/simsun.ttc':x=(w-tw)/2+30:y=(h-th)/2+160:fontsize=45:enable=lt(mod(t\,120)\,30)"  -y "E:\ERK\output\%%~na.mp4"
+pause
+```
+
+### 3. 指定时间段添加图片水印
+
+```batch
+@echo off
+ffmpeg -y -i C:\Users\USER\Desktop\ff\727dd4a94c50ec206d8e56d13c5e8cdf.mp4 -i C:\Users\USER\Desktop\ff\WechatIMG1093.jpeg -filter_complex "[0:v][1:v]overlay=0:0:enable=between(t\,5\,8)" -codec:a copy C:\Users\USER\Desktop\output.mp4
+pause
+```
+
+### 4. 批量视频格式转换（转为 H.264 MP4）
+
+```batch
+@echo off
+for %%a in ("E:\ERK\input\*.*") do ffmpeg -y -i "%%a" -c:v libx264 -crf 23 -preset medium -c:a aac "E:\ERK\output\%%~na.mp4"
+pause
+```
+
+::: tip 说明
+**crf**：画质参数，18~28 之间，数字越小画质越好、文件越大，23 是默认值。
+:::
+
+### 5. 批量压缩视频（保持原编码，仅降码率）
+
+```batch
+@echo off
+for %%a in ("E:\ERK\input\*.mp4") do ffmpeg -y -i "%%a" -c:v libx264 -crf 28 -preset slow -c:a copy "E:\ERK\output\%%~na.mp4"
+pause
+```
+
+### 6. 视频剪切（截取指定时间段）
+
+```batch
+@echo off
+rem 从第 10 秒开始，截取 30 秒；-c copy 无损快速剪切（时间点会稍微对齐关键帧）
+ffmpeg -y -ss 00:00:10 -i input.mp4 -t 30 -c copy output.mp4
+rem 精确剪切（重新编码，速度慢但时间点准确）
+ffmpeg -y -ss 00:00:10 -i input.mp4 -t 30 -c:v libx264 -crf 23 -c:a aac output.mp4
+pause
+```
+
+### 7. 提取音频 / 提取视频画面
+
+```batch
+@echo off
+rem 提取音频为 mp3
+ffmpeg -y -i input.mp4 -vn -c:a libmp3lame -q:a 2 output.mp3
+rem 提取某一秒的视频画面截图（封面图）
+ffmpeg -y -ss 00:00:05 -i input.mp4 -frames:v 1 -q:v 2 cover.jpg
+pause
+```
+
+### 8. 视频转 GIF
+
+```batch
+@echo off
+rem 取前 5 秒，缩放到宽 480，帧率 12
+ffmpeg -y -t 5 -i input.mp4 -vf "fps=12,scale=480:-1:flags=lanczos" output.gif
+pause
+```
+
+### 9. 批量视频缩放（等比缩放到指定宽度）
+
+```batch
+@echo off
+for %%a in ("E:\ERK\input\*.mp4") do ffmpeg -y -i "%%a" -vf "scale=720:-2" -c:a copy "E:\ERK\output\%%~na.mp4"
+pause
+```
+
+::: tip 说明
+**scale=720:-2**：宽度固定 720，高度自动按比例计算并保持编码器兼容（-2 保证高度为偶数，奇数高度会导致 libx264 报错）。
+:::
 
