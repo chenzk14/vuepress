@@ -67,7 +67,7 @@ async function fetchCategories() {
 
 // 拉取已发布文章
 async function fetchArticles() {
-  return await cloudGet('/.cloud/database/rest/articles?select=id,title,summary,content,category,cover,owner_name,created_at,updated_at&data_env=eq.prod&status=eq.published&order=created_at.desc');
+  return await cloudGet('/.cloud/database/rest/articles?select=id,title,summary,content,category,cover,owner_name,created_at,updated_at,sort_order&data_env=eq.prod&status=eq.published&order=created_at.desc');
 }
 
 // 解析分类 "A/B/C" -> ["A", "B", "C"]
@@ -122,10 +122,12 @@ function cleanGeneratedFiles(dir) {
 function buildArticleFrontmatter(a) {
   const date = (a.created_at || '').slice(0, 10);
   const cats = parseCategory(a.category);
+  const hasOrder = a.sort_order != null && a.sort_order !== '';
   const lines = [
     '---',
     `title: "${escapeFrontmatter(a.title)}"`,
     `date: ${date}`,
+    ...(hasOrder ? [`order: ${a.sort_order}`] : []),
     `source: backend`,
     '---',
     ''
