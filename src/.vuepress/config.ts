@@ -96,7 +96,7 @@ export default defineUserConfig({
       // 选项卡
       tabs: true,
     },
-    repo: "https://github.com/ForMonEv/vuepress.git",
+    repo: "https://github.com/chenzk14/vuepress.git",
     repoLabel: "GitHub",
     repoDisplay: true,
   }),
