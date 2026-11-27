@@ -43,7 +43,25 @@ export default defineUserConfig({
     // 自动侧边栏：按文件夹结构自动生成，后台新增分类自动出现
     // 一级目录分类（单文件）由 fetch 脚本把文章内容写入 README 并设置 dir.link，实现单链接项
     sidebar: 'structure',
-    sidebarSorter: ['readme', 'order', 'filename', 'title'],
+    // 自定义排序：修复 theme-hope 内置 order sorter 对 order=0 处理错误（0 会被排到末尾）
+    // 语义：order 越小越靠前，0 排最前；无 order(null) 的排最后；同 order 按标题排序
+    sidebarSorter: [
+      'readme',
+      (infoA: any, infoB: any) => {
+        const a = infoA.order;
+        const b = infoB.order;
+        const aNum = typeof a === 'number' ? a : null;
+        const bNum = typeof b === 'number' ? b : null;
+        // 无 order 的排最后
+        if (aNum === null && bNum === null) return 0;
+        if (aNum === null) return 1;
+        if (bNum === null) return -1;
+        // 严格升序：0 最前
+        return aNum - bNum;
+      },
+      'filename',
+      'title',
+    ],
 
     plugins: {
       icon: {
